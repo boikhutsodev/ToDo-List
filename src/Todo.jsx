@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function generateId() {
-  return Math.floor(Math.random() * 10);
+  return Math.floor(Math.random() * 10000); // Increase the range to reduce the chance of duplicate IDs
 }
 
 function Todo() {
@@ -9,13 +9,19 @@ function Todo() {
   const [input, setInput] = useState("");
 
   const handleSubmit = () => {
-    setTodos((todos) => {
+    if (input.trim() === "") return; // Prevent adding empty todos
+
+    setTodos((todos) =>
       todos.concat({
         text: input,
         id: generateId(),
-      });
-      setInput("");
-    });
+      })
+    );
+    setInput("");
+  };
+
+  const removeTodo = (id) => {
+    setTodos((todos) => todos.filter((t) => t.id !== id));
   };
 
   return (
@@ -30,12 +36,14 @@ function Todo() {
         <button onClick={handleSubmit}>Submit</button>
         <ul className="todo-list">
           {todos.map(({ text, id }) => {
-            <li key={id} className="todo">
-              <span>{text}</span>
-              <button className="close" onClick={() => removeTodo}>
-                X
-              </button>
-            </li>;
+            return (
+              <li key={id} className="todo">
+                <span>{text}</span>
+                <button className="close" onClick={() => removeTodo(id)}>
+                  X
+                </button>
+              </li>
+            );
           })}
         </ul>
       </div>
