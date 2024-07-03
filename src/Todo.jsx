@@ -28,6 +28,16 @@ function Todo() {
           placeholder="New Todo"
         />
         <button onClick={handleSubmit}>Submit</button>
+        <ul className="todo-list">
+          {todos.map(({ text, id }) => {
+            <li key={id} className="todo">
+              <span>{text}</span>
+              <button className="close" onClick={() => removeTodo}>
+                X
+              </button>
+            </li>;
+          })}
+        </ul>
       </div>
     </>
   );
