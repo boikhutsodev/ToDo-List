@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+function generateId() {
+  return Math.floor(Math.random() * 10);
+}
+
 function Todo() {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState("");
@@ -10,6 +14,7 @@ function Todo() {
         text: input,
         id: generateId(),
       });
+      setInput("");
     });
   };
 
