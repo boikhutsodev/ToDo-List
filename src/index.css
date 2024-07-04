@@ -25,3 +25,14 @@ input {
   width: 300px;
   margin-right: 10px;
 }
+
+button {
+  border-radius: 100px;
+  background: #454545;
+  border: none;
+  outline: none;
+  padding: 5px;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+}
